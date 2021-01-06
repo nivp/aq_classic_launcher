@@ -3,7 +3,24 @@
 
 A launcher for AdventureQuest Classic including some Quality of Life improvements.
 
-# Building
+# Features
+Feature List:
+- Automatically fetches most recent AQ version.
+- Tabbed interface: load up several characters at the same time
+- Multiscreen support: Open several AQ instances on the same tab
+- Character page loader: Input a character ID and press "Go" to open it in new tab.
+- Keyboard Shortcuts:
+  - F4 to clear cache
+  - F5 to refresh
+  - Ctrl+F5 to refresh and clear cache
+  - F11 toggle full screen
+  - Ctrl+Shift+I to open the Developer Console
+- Menu icon for various AQ resources that open in a draggable window.
+
+Screenshots:
+https://imgur.com/a/QrbBoN2
+
+# Building from source
 ## Install Requirements
   ```npm install```
 

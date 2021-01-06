@@ -3,7 +3,7 @@
 
 A launcher for AdventureQuest Classic including some Quality of Life improvements.
 
-# Features
+## Features
 Feature List:
 - Automatically fetches most recent AQ version.
 - Tabbed interface: load up several characters at the same time
@@ -20,11 +20,11 @@ Feature List:
 Screenshots:
 https://imgur.com/a/QrbBoN2
 
-# Building from source
-## Install Requirements
+## Building from source
+### Install Requirements
   ```npm install```
 
-## Include Flash Player plugin
+### Include Flash Player plugin
   Do note that per the Adobe Flash Player license agreement I can't distribute it, and you are therefore required to include it yourself in the resources folder.
   The plugins should be renamed as follows:
 
@@ -46,12 +46,12 @@ https://imgur.com/a/QrbBoN2
   ARM Linux:
   ```libpepflashplayer_armv7l.so```
 
-## Build
+### Build
 
-  ### Windows:
+  #### Windows:
   ```./build.bat```
   
-  ### Linux:
+  #### Linux:
   ```npm run package-[platform]```
   
   **Platforms**: mac, win, win64, linux, linux64, linuxarmv7l

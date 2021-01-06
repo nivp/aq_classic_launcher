@@ -1,4 +1,5 @@
 # AQ Classic Launcher
+![AdventureQuest Classic Launcher](https://i.imgur.com/hbVZDap.png =250x250)
 A launcher for AdventureQuest Classic including some Quality of Life improvements.
 # Building
 ## Install Requirements

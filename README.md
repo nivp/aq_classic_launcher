@@ -28,13 +28,13 @@ A launcher for AdventureQuest Classic including some Quality of Life improvement
 
 ## Build
 
-  Windows:
+  ### Windows:
   ```./build.bat```
   
-  Linux:
+  ### Linux:
   ```npm run package-[platform]```
   
-  Platforms: mac, win, win64, linux, linux64, linuxarmv7l
+  **Platforms**: mac, win, win64, linux, linux64, linuxarmv7l
   
-  For example, building to Windows 64-bit would be:
+  **For example**, building to Windows 64-bit would be:
   ```npm run package-win64```

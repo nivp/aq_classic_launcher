@@ -20,6 +20,13 @@ Feature List:
 Screenshots:
 https://imgur.com/a/QrbBoN2
 
+## Architecture
+- [Node.js](https://nodejs.org/en/)
+- [Electron](https://www.electronjs.org/)
+- [electron-tabs](https://github.com/brrd/electron-tabs/)
+- [electron-is-dev](https://www.npmjs.com/package/electron-is-dev)
+- [electron-packager](https://github.com/electron/electron-packager)
+
 ## Building from source
 ### Install Requirements
   ```npm install```

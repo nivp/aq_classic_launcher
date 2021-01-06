@@ -50,9 +50,11 @@ https://imgur.com/a/QrbBoN2
 
   #### Windows:
   
-  Windows has a script to automatically build for all available platforms, otherwise run the same command as Linux for manually building for each platform.
+  Windows has a script to automatically build for all available platforms:
   
   ```./build.bat```
+  
+  Otherwise run the same command as Linux for manually building for each platform.
   
   #### Linux:
   ```npm run package-[platform]```

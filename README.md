@@ -1,10 +1,10 @@
 # AQ Classic Launcher
 A launcher for AdventureQuest Classic including some Quality of Life improvements.
 # Building
-1. Install requirements:
+## Install Requirements
   > npm install
 
-2. Include Flash Player plugin
+## Include Flash Player plugin
   Do note that per the Adobe Flash Player license agreement I can't distribute it, and you are therefore required to include it yourself in the resources folder.
   The plugins should be renamed as follows:
 
@@ -26,7 +26,7 @@ A launcher for AdventureQuest Classic including some Quality of Life improvement
   ARM Linux:
   > libpepflashplayer_armv7l.so
 
-3. Build
+## Build
 
   Windows:
   > ./build.bat

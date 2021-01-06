@@ -1,6 +1,8 @@
 # AQ Classic Launcher
 <img src="https://i.imgur.com/hbVZDap.png" width="300" />
+
 A launcher for AdventureQuest Classic including some Quality of Life improvements.
+
 # Building
 ## Install Requirements
   ```npm install```

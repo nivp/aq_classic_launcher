@@ -27,6 +27,7 @@ A launcher for AdventureQuest Classic including some Quality of Life improvement
   > libpepflashplayer_armv7l.so
 
 3. Build
+
   Windows:
   > ./build.bat
   

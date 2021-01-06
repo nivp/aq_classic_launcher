@@ -1,0 +1,26 @@
+{
+  "name": "aqclassic_launcher",
+  "version": "1.0.0",
+  "description": "A launcher for AdventureQuest Classic",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=resources/Favicon.ico --prune=true --out=release-builds",
+    "package-win": "electron-packager . aqclassic_launcher --overwrite --platform=win32 --arch=ia32 --asar.unpackDir='resources' --icon=resources/Favicon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"AQClassic Launcher\"",
+    "package-win64": "electron-packager . aqclassic_launcher --overwrite --platform=win32 --arch=x64 --asar.unpackDir='resources' --icon=resources/Favicon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"AQClassic Launcher\"",
+    "package-linux": "electron-packager . aqclassic_launcher --overwrite --platform=linux --arch=ia32 --asar.unpackDir='resources' --icon=resources/Favicon.ico --prune=true --out=release-builds",
+    "package-linux64": "electron-packager . aqclassic_launcher --overwrite --platform=linux --arch=x64 --asar.unpackDir='resources' --icon=resources/Favicon.ico --prune=true --out=release-builds",
+    "package-linuxarmv7l": "electron-packager . aqclassic_launcher --overwrite --platform=linux --arch=armv7l --asar.unpackDir='resources' --icon=resources/Favicon.ico --prune=true --out=release-builds"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dragula": "^3.7.3",
+    "electron-is-dev": "^1.2.0",
+    "electron-tabs": "^0.15.0"
+  },
+  "devDependencies": {
+    "electron": "^4.2.6",
+    "electron-packager": "^15.1.0",
+    "electron-tabs": "^0.15.0"
+  }
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unofficial AdventureQuest Launcher</title>
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline'"
+    />
+
+    <link
+      rel="stylesheet"
+      href="node_modules/electron-tabs/electron-tabs.css"
+    />
+    <link rel="stylesheet" href="node_modules/dragula/dist/dragula.css" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body style="margin: 0">
+    <div class="etabs-tabgroup">
+      <div class="etabs-tabs"></div>
+      <div class="etabs-buttons"></div>
+    </div>
+    <div id="copyClipboard" style="display: none"></div>
+
+    <div id="menuPopup" class="menuPopup" visibility="true">
+      <div class="popup">
+        <button id="hideMenuIcon" class="kc_fab_sec_btn">+</button>
+        <div id="menuPopupHeader" onclick="togglePopup()">
+          <button id="menuIcon" class="kc_fab_main_btn">+</button>
+        </div>
+        <span class="popuptext" id="myPopup">
+          <div class="link">
+            <input
+              id="charpage_id"
+              type="text"
+              placeholder="Insert Char ID"
+              size="9"
+              maxlength="9"
+            />
+            <a
+              href="#"
+              onclick="openInfoTab(null, 'https://aq.battleon.com/game/flash/charview?temp='+document.getElementById('charpage_id').value)"
+              >Char Page</a
+            >
+          </div>
+          <div class="link">
+            <input
+              id="firebase_id"
+              type="text"
+              placeholder="Insert Char ID"
+              size="9"
+              maxlength="9"
+            />
+            <a
+              href="#"
+              onclick="openInfoTab('AQ Char Info', 'https://aqwarraces.herokuapp.com/charinfo2?charid='+document.getElementById('firebase_id').value, null, createFirebaseInfo)"
+              >Char Info</a
+            >
+          </div>
+          <div class="link">
+            <a
+              href="#"
+              onclick="openInfoTab('Warzone', 'https://www.battleon.com/aq-warzone.asp', null, createWarzoneInfo)"
+              >Official War Leaderboard</a
+            >
+          </div>
+          <div class="link">
+            <a
+              href="#"
+              onclick="openInfoTab('Knights of Discord', 'http://aqknightsofdiscord.herokuapp.com/')"
+              >Knights of Discord Leaderboard</a
+            >
+          </div>
+          <div class="link">
+            <a
+              href="#"
+              onclick="openInfoTab('Token Donation Leaderboard', 'https://www.battleon.com/aq-elftokens.asp','elfToken', createElfInfo)"
+              >Token Donation Leaderboard</a
+            >
+          </div>
+          <div class="link">
+            <a
+              href="#"
+              onclick="openInfoTab('Gold Donation Leaderboard', 'https://www.battleon.com/aq-elfgold.asp','elfGold', createElfInfo)"
+              >Gold Donation Leaderboard</a
+            >
+          </div>
+          <div class="link">
+            <a
+              href="#"
+              onclick="toggleMultiscreen()"
+              id="multiscreenToggle"
+              state="Off"
+              >Toggle Multiscreen Controls</a
+            >
+          </div>
+        </span>
+      </div>
+    </div>
+    <div class="etabs-views"></div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

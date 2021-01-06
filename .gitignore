@@ -1,0 +1,8 @@
+node_modules
+release-builds
+resources/libpepflashplayer_32.so
+resources/libpepflashplayer_64.so
+resources/libpepflashplayer_armv7l.so
+resources/pepflashplayer32_32_0_0_453.dll
+resources/pepflashplayer64_32_0_0_453.dll
+resources/PepperFlashPlayer.plugin

@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>AdventureQuest</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="zard" content="aq.battleon.com" />
+    <link
+      href="https://aq.battleon.com/game/Content/css/game.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="aq.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body onresize="global.aqtabs.resize()">
+    <script src="aq.js"></script>
+    <div id="container">
+      <div id="loading" class="loading">
+        <div class="lds-dual-ring"></div>
+      </div>
+    </div>
+    <div class="multiscreenPopup invisible">
+      <input
+        type="button"
+        id="increaseScreens"
+        value="+"
+        style="height: 100px"
+        onclick="increaseScreenCount()"
+      />
+    </div>
+  </body>
+</html>

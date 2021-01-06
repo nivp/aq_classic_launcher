@@ -46,9 +46,12 @@ https://imgur.com/a/QrbBoN2
   ARM Linux:
   ```libpepflashplayer_armv7l.so```
 
-### Build
+### Package
 
   #### Windows:
+  
+  Windows has a script to automatically build for all available platforms, otherwise run the same command as Linux for manually building for each platform.
+  
   ```./build.bat```
   
   #### Linux:

@@ -24,6 +24,7 @@ https://imgur.com/a/QrbBoN2
 - [Node.js](https://nodejs.org/en/)
 - [Electron](https://www.electronjs.org/)
 - [electron-tabs](https://github.com/brrd/electron-tabs/)
+- [dragula](https://www.npmjs.com/package/dragula)
 - [electron-is-dev](https://www.npmjs.com/package/electron-is-dev)
 - [electron-packager](https://github.com/electron/electron-packager)
 

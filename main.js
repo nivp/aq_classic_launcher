@@ -5,6 +5,7 @@ const {
   Tray,
   globalShortcut,
   MenuItem,
+  ipcMain,
 } = require("electron");
 const isDev = require("electron-is-dev");
 const path = require("path");
@@ -16,22 +17,28 @@ switch (process.platform) {
   case "win32":
     iconName = "\\resources\\Favicon.ico";
     if (process.arch == "ia32") {
-      pluginName = "\\resources\\pepflashplayer32_32_0_0_453.dll";
+      // Pepper Flash Player 32-bit 32_0_0_371
+      pluginName = "\\resources\\pepflashplayer_32.dll";
     } else {
-      pluginName = "\\resources\\pepflashplayer64_32_0_0_453.dll";
+      // Pepper Flash Player 64-bit 32_0_0_371
+      pluginName = "\\resources\\pepflashplayer_64.dll";
     }
     break;
   case "darwin":
+    // Plugin not updated
     iconName = "/resources/Favicon.ico";
     pluginName = "/resources/PepperFlashPlayer.plugin";
     break;
   case "linux":
     iconName = "/resources/Favicon.ico";
     if (process.arch == "ia32") {
+      // Plugin not updated
       pluginName = "/resources/libpepflashplayer_32.so";
     } else if (process.arch == "armv7l") {
+      // Plugin not updated
       pluginName = "/resources/libpepflashplayer_armv7l.so";
     } else {
+      // Plugin not updated
       pluginName = "/resources/libpepflashplayer_64.so";
     }
     break;
@@ -44,6 +51,16 @@ let pluginPath = process.env.ELECTRON_START_URL
 let iconPath = process.env.ELECTRON_START_URL
   ? path.join(__dirname, iconName)
   : __dirname.replace("app.asar", "app.asar.unpacked") + iconName;
+
+function returnPath() {
+  return pluginPath;
+}
+
+ipcMain.on("asynchronous-message", (event, arg) => {
+  // console.log(arg);
+  // console.log(event);
+  event.sender.send("asynchronous-reply", returnPath());
+});
 
 app.commandLine.appendSwitch("ppapi-flash-path", pluginPath);
 
@@ -72,9 +89,9 @@ function createWindow() {
   win.setMenu(null);
 
   win.once("ready-to-show", () => {
-    if (isDev) {
+    //if (isDev) {
       win.webContents.openDevTools();
-    }
+    //}
     win.show();
   });
 

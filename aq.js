@@ -1,9 +1,11 @@
+const { ipcRenderer } = require("electron");
 const isDev = require("electron-is-dev");
 
 class AQTabGroup {
   constructor(container) {
     this.container = container;
     this.multiscreen = false;
+    this.server = "aq";
     this.tabs = new Map();
     this.getGameVer()
       .then((version) => (this.version = version))
@@ -23,9 +25,13 @@ class AQTabGroup {
     return this.tabs.size;
   }
 
+  setServer(server) {
+    this.server = server;
+  }
+
   // get game version
   getGameVer() {
-    let url = "https://aq.battleon.com/game/web";
+    let url = `https://${this.server}.battleon.com/game/web`;
     let gamever = fetch(url)
       .then((response) => response.text())
       .then((html) => {
@@ -59,11 +65,17 @@ class AQTabGroup {
   }
 
   removeTab(id) {
-    if (this.length <= 1) {
+    if (id < 0 || id >= this.length) {
       return;
     }
+
     this.tabs.get(id).removeTab();
     this.tabs.delete(id);
+
+    if (this.length < 1) {
+      this.addTab();
+      return;
+    }
 
     this.resize();
   }
@@ -125,11 +137,14 @@ class AQTabGroup {
 class AQTab {
   constructor(id, version, tabgroup) {
     this.id = id;
-    this.node = this.createAQObject(id, version);
     this.tabgroup = tabgroup;
+    this.node = this.createAQObject(id, version);
   }
 
   createAQObject(id, version) {
+    // get the server type
+    let server = this.tabgroup.server;
+
     // create the object
     let object = document.createElement("object");
 
@@ -148,8 +163,8 @@ class AQTab {
 
     // add its parameters
     let params = {
-      movie: `https://aq.battleon.com/game/flash/${version}`,
-      base: "https://aq.battleon.com/game/flash/",
+      movie: `https://${server}.battleon.com/game/flash/${version}`,
+      base: `https://${server}.battleon.com/game/flash/`,
       FlashVars: "test=1",
       allowScriptAccess: "sameDomain",
       loop: "false",
@@ -172,7 +187,7 @@ class AQTab {
 
     let embedattr = {
       class: "fullscreen",
-      src: `https://aq.battleon.com/game/flash/${version}`,
+      src: `https://${server}.battleon.com/game/flash/${version}`,
       FlashVars: "test=1",
       loop: "false",
       menu: "false",
@@ -180,7 +195,7 @@ class AQTab {
       swLiveConnect: "true",
       bgcolor: "#333333",
       allowScriptAccess: "sameDomain",
-      base: "https://aq.battleon.com/game/flash/",
+      base: `https://${server}.battleon.com/game/flash/`,
       type: "application/x-shockwave-flash",
       pluginspage: "https://www.macromedia.com/go/getflashplayer",
       id: "embed_1",
@@ -205,6 +220,9 @@ class AQTab {
     closeButton.setAttribute("type", "button");
     closeButton.setAttribute("value", "x");
     closeButton.classList.add("tabCloseButton");
+    if (!global.aqtabs.multiscreen) {
+      closeButton.classList.add("invisible");
+    }
     closeButton.onclick = () => {
       global.aqtabs.removeTab(id);
     };
@@ -227,77 +245,6 @@ function resizeContent(obj, height, width) {
   emb.style.width = width;
 }
 
-function createAQObject(container, version) {
-  // create the object
-  let object = document.createElement("object");
-
-  // set its attributes
-  let attr = {
-    classid: "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000",
-    id: "aqgameflash1",
-    codebase:
-      "https://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0",
-    class: "fullscreen",
-  };
-
-  for (const property in attr) {
-    object.setAttribute(property, attr[property]);
-  }
-
-  // add its parameters
-  let params = {
-    movie: `https://aq.battleon.com/game/flash/${version}`,
-    base: "https://aq.battleon.com/game/flash/",
-    FlashVars: "test=1",
-    allowScriptAccess: "sameDomain",
-    loop: "false",
-    menu: "false",
-    quality: "High",
-    bgcolor: "#333333",
-  };
-
-  for (const param in params) {
-    let newParam = document.createElement("param");
-    newParam.setAttribute(param, params[param]);
-    if (param == "movie") {
-      newParam.setAttribute("id", "object_1");
-    }
-    object.appendChild(newParam);
-  }
-
-  // create the embed
-  let embed = document.createElement("embed");
-
-  let embedattr = {
-    class: "fullscreen",
-    src: `https://aq.battleon.com/game/flash/${version}`,
-    FlashVars: "test=1",
-    loop: "false",
-    menu: "false",
-    name: "aqgameflash1",
-    swLiveConnect: "true",
-    bgcolor: "#333333",
-    allowScriptAccess: "sameDomain",
-    base: "https://aq.battleon.com/game/flash/",
-    type: "application/x-shockwave-flash",
-    pluginspage: "https://www.macromedia.com/go/getflashplayer",
-    id: "embed_1",
-  };
-
-  for (const property in embedattr) {
-    embed.setAttribute(property, embedattr[property]);
-  }
-
-  // insert the embed into the object
-  object.appendChild(embed);
-
-  // insert the object into the container
-  container.appendChild(object);
-
-  // add onresize to body
-  // document.body.onresize = resizeContent;
-}
-
 function reduceScreenCount(e) {
   let aqtabs = global.aqtabs;
   aqtabs.removeTab(aqtabs.length - 1);
@@ -317,6 +264,7 @@ function localToggleMultiscreen() {
 
     let closeButton = document.getElementsByClassName("tabCloseButton")[0];
     closeButton.classList.remove("invisible");
+    global.aqtabs.multiscreen = true;
   } else {
     multiscreenButton.classList.add("invisible");
     while (global.aqtabs.length > 1) {
@@ -325,6 +273,15 @@ function localToggleMultiscreen() {
 
     let closeButton = document.getElementsByClassName("tabCloseButton")[0];
     closeButton.classList.add("invisible");
+    global.aqtabs.multiscreen = false;
+  }
+}
+
+function localChangeServer(server) {
+  global.aqtabs.setServer(server);
+
+  for (let i = global.aqtabs.length - 1; i >= 0; i--) {
+    aqtabs.removeTab(global.aqtabs.length - 1);
   }
 }
 

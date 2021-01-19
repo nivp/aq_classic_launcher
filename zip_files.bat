@@ -1,5 +1,5 @@
 Rem Variables
-set version=1.4.2
+set version=%1%
 set platforms=(linux-armv7l,linux-ia32,linux-x64,win32-ia32,win32-x64)
 
 for %%x in %platforms% do (

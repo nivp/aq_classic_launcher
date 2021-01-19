@@ -652,6 +652,21 @@ function toggleMultiscreen() {
   return;
 }
 
+function changeServer() {
+  let selector = document.getElementById("serverSelect");
+  let server = selector.value;
+  // if (isDev) {
+  //   console.log(server);
+  // }
+
+  let tab = tabGroup.getActiveTab();
+  let webview = tab.webview;
+  console.log(server);
+  webview.setAttribute("server", server);
+  webview.executeJavaScript(`localChangeServer('${server}')`);
+  return;
+}
+
 let tabGroup = new TabGroup({
   newTab: {
     title: "AdventureQuest",
@@ -670,7 +685,7 @@ let tabGroup = new TabGroup({
   },
 });
 
-tabGroup.on("tab-active", (tab, tabGroup) => {
+function setClipboardArea(tab) {
   let clipboard_area = document.getElementById("copyClipboard");
   if (tab.webviewAttributes.src.includes("charview")) {
     clipboard_area.innerHTML = "";
@@ -703,6 +718,53 @@ tabGroup.on("tab-active", (tab, tabGroup) => {
     );
     clipboard_area.innerHTML = "";
   }
+}
+
+function setSelectedServer(tab) {
+  let selector_area = document.getElementById("serverSelector");
+  if (tab.webviewAttributes.src.includes("aq.html")) {
+    selector_area.innerHTML = "";
+    selector_area.setAttribute(
+      "style",
+      "position: absolute; right: 0; height: inherit; display: flex; justify-content: center;"
+    );
+    let selector = document.createElement("select");
+    selector.setAttribute("name", "serverSelect");
+    selector.setAttribute("id", "serverSelect");
+
+    let server = tab.webview.getAttribute("server");
+    if (server == null) {
+      tab.webview.setAttribute("server", "aq");
+      server = "aq";
+    }
+
+    let options = ["aq", "guardian", "new"];
+    options.forEach((option) => {
+      let optionElement = document.createElement("option");
+      optionElement.setAttribute("value", option);
+      if (option == server) {
+        console.log("option = " + option + ". server = " + server);
+        optionElement.setAttribute("selected", "selected");
+      }
+      optionElement.innerText = option;
+      selector.appendChild(optionElement);
+    });
+
+    selector.onchange = changeServer;
+
+    selector_area.appendChild(selector);
+  } else {
+    selector_area.setAttribute(
+      "style",
+      "position: absolute; right: 0; display: none;"
+    );
+    selector_area.innerHTML = "";
+  }
+}
+
+tabGroup.on("tab-active", (tab, tabGroup) => {
+  setClipboardArea(tab);
+  setSelectedServer(tab);
 });
 
 tabGroup.on("tab-removed", (tab, tabGroup) => {
@@ -743,3 +805,11 @@ if (!isDev) {
     active: true,
   });
 }
+
+ipcRenderer.on("asynchronous-reply", (event, arg) => {
+  console.log(arg);
+});
+
+ipcRenderer.send("asynchronous-message");
+
+console.log(navigator.plugins);

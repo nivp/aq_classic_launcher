@@ -12,13 +12,13 @@ body {
   transition: right 0.3s;
 }
 .menuPopup_hidden {
-  right: -30px;
+  right: -4vmin;
 }
 
 .windowPopup {
   position: absolute;
-  right: 30px;
-  top: 30px;
+  right: 4vmin;
+  top: 4vmin;
   z-index: 1000;
   height: 400px;
   width: 320px;
@@ -68,8 +68,8 @@ body {
   z-index: 1;
   bottom: 125%;
   right: 100%;
-  margin-right: -58px;
-  margin-bottom: -40px;
+  margin-right: -7.73vmin;
+  margin-bottom: -5vmin;
 }
 
 /* Toggle this class - hide and show the popup */
@@ -164,14 +164,14 @@ body {
 
 .kc_fab_main_btn {
   background-color: rgb(244, 64, 52);
-  width: 60px;
-  height: 60px;
+  width: 8vmin;
+  height: 8vmin;
   border-radius: 100%;
   background: #f44336;
   border: none;
   outline: none;
   color: #fff;
-  font-size: 36px;
+  font-size: 4.8vmin;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   transition: 0.3s;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -188,16 +188,16 @@ body {
 .kc_fab_sec_btn {
   position: relative;
   background-color: #7e7e7e;
-  width: 30px;
-  height: 30px;
+  width: 4vmin;
+  height: 4vmin;
   right: 0px;
-  bottom: -45px;
+  bottom: -6vmin;
   border-radius: 100%;
   background: #525252;
   border: none;
   outline: none;
   color: #fff;
-  font-size: 14px;
+  font-size: 2.4vmin;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23);
   transition: 0.3s;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -208,6 +208,6 @@ body {
 }
 
 .kc_fab_sec_btn_focused {
-  right: 45px;
+  right: 7vmin;
   transform: rotate(45deg);
 }

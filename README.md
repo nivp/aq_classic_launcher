@@ -16,6 +16,8 @@ Feature List:
   - F11 toggle full screen
   - Ctrl+Shift+I to open the Developer Console
 - Menu icon for various AQ resources that open in a draggable window.
+- Change the current tab's server to play on multiple servers or accounts.
+
 
 Screenshots:
 https://imgur.com/a/QrbBoN2
@@ -34,6 +36,7 @@ https://imgur.com/a/QrbBoN2
 
 ### Include Flash Player plugin
   Do note that per the Adobe Flash Player license agreement I can't distribute it, and you are therefore required to include it yourself in the resources folder.
+  The most recent Flash version that doesn't include the Killswitch is 32.0.0.371.
   The plugins should be renamed as follows:
 
   Linux 32-bit:
@@ -43,10 +46,10 @@ https://imgur.com/a/QrbBoN2
   ```libpepflashplayer_64.so```
 
   Windows 32-bit:
-  ```pepflashplayer32_32_0_0_453.dll```
+  ```pepflashplayer_32.dll```
 
   Windows 64-bit:
-  ```pepflashplayer64_32_0_0_453.dll```
+  ```pepflashplayer_64.dll```
 
   OS X:
   ```PepperFlashPlayer.plugin```
@@ -60,7 +63,10 @@ https://imgur.com/a/QrbBoN2
   
   Windows has a script to automatically build for all available platforms:
   
-  ```./build.bat```
+  ```./build.bat [version]```
+  
+  For example:
+  ```./build.bat 1.4.4```
   
   Otherwise run the same command as Linux for manually building for each platform.
   

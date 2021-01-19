@@ -32,7 +32,9 @@ https://imgur.com/a/QrbBoN2
 
 ## Building from source
 ### Install Requirements
-  ```npm install```
+  ```shell
+  npm install
+  ```
 
 ### Include Flash Player plugin
   Do note that per the Adobe Flash Player license agreement I can't distribute it, and you are therefore required to include it yourself in the resources folder.
@@ -63,17 +65,25 @@ https://imgur.com/a/QrbBoN2
   
   Windows has a script to automatically build for all available platforms:
   
-  ```./build.bat [version]```
+  ```batch
+  ./build.bat [version]
+  ```
   
-  For example:
-  ```./build.bat 1.4.4```
+  **For example**:
+  ```batch
+  ./build.bat 1.4.4
+  ```
   
   Otherwise run the same command as Linux for manually building for each platform.
   
   #### Linux:
-  ```npm run package-[platform]```
+  ```terminal
+  npm run package-[platform]
+  ```
   
   **Platforms**: mac, win, win64, linux, linux64, linuxarmv7l
   
   **For example**, building to Windows 64-bit would be:
-  ```npm run package-win64```
+  ```terminal
+  npm run package-win64
+  ```

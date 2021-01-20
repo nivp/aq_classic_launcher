@@ -57,8 +57,6 @@ function returnPath() {
 }
 
 ipcMain.on("asynchronous-message", (event, arg) => {
-  // console.log(arg);
-  // console.log(event);
   event.sender.send("asynchronous-reply", returnPath());
 });
 
@@ -89,9 +87,9 @@ function createWindow() {
   win.setMenu(null);
 
   win.once("ready-to-show", () => {
-    //if (isDev) {
+    if (isDev) {
       win.webContents.openDevTools();
-    //}
+    }
     win.show();
   });
 
@@ -213,7 +211,7 @@ function createMenu(win) {
           accelerator:
             process.platform === "darwin" ? "Cmd+Shift+I" : "Ctrl+Shift+I",
           click: (item, window, event) => {
-            win.webContents.openDevTools();
+            //win.webContents.openDevTools();
             win.webContents.send("hotkey", "devtools");
           },
         },

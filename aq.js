@@ -65,7 +65,7 @@ class AQTabGroup {
   }
 
   removeTab(id) {
-    if (id < 0 || id >= this.length) {
+    if (!this.tabs.get(id)) {
       return;
     }
 
@@ -210,6 +210,7 @@ class AQTab {
 
     // create a tab div
     let tab = document.createElement("div");
+    tab.setAttribute("id", id);
     tab.classList.add("tabContainer");
 
     // insert the object into the tab
@@ -224,7 +225,7 @@ class AQTab {
       closeButton.classList.add("invisible");
     }
     closeButton.onclick = () => {
-      global.aqtabs.removeTab(id);
+      global.aqtabs.removeTab(parseInt(tab.getAttribute("id")));
     };
     tab.appendChild(closeButton);
 

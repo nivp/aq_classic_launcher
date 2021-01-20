@@ -655,13 +655,9 @@ function toggleMultiscreen() {
 function changeServer() {
   let selector = document.getElementById("serverSelect");
   let server = selector.value;
-  // if (isDev) {
-  //   console.log(server);
-  // }
 
   let tab = tabGroup.getActiveTab();
   let webview = tab.webview;
-  console.log(server);
   webview.setAttribute("server", server);
   webview.executeJavaScript(`localChangeServer('${server}')`);
   return;
@@ -743,7 +739,6 @@ function setSelectedServer(tab) {
       let optionElement = document.createElement("option");
       optionElement.setAttribute("value", option);
       if (option == server) {
-        console.log("option = " + option + ". server = " + server);
         optionElement.setAttribute("selected", "selected");
       }
       optionElement.innerText = option;
@@ -811,5 +806,3 @@ ipcRenderer.on("asynchronous-reply", (event, arg) => {
 });
 
 ipcRenderer.send("asynchronous-message");
-
-console.log(navigator.plugins);

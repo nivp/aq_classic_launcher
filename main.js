@@ -56,11 +56,23 @@ function returnPath() {
   return pluginPath;
 }
 
+if (!fs.existsSync(pluginPath)) {
+  console.log(pluginPath);
+  throw new Error(`Plugin does not exist in path: ${pluginPath}.`);
+}
+else {
+  console.log(`Found plugin in path: ${pluginPath}`);
+}
+
 ipcMain.on("asynchronous-message", (event, arg) => {
   event.sender.send("asynchronous-reply", returnPath());
 });
 
 app.commandLine.appendSwitch("ppapi-flash-path", pluginPath);
+app.commandLine.appendSwitch('ppapi-flash-version', '32.0.0.371');
+app.commandLine.appendSwitch('--no-sandbox')
+app.commandLine.appendSwitch('ignore-certificate-errors', 'true');
+app.commandLine.appendSwitch('allow-insecure-localhost', 'true');
 
 let tray;
 

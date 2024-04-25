@@ -671,6 +671,7 @@ let tabGroup = new TabGroup({
     plugins: true,
     webviewAttributes: {
       nodeintegration: "nodeintegration",
+      plugins: "plugins",
     },
     ready: navigate,
   },
@@ -774,6 +775,7 @@ tabGroup.on("tab-removed", (tab, tabGroup) => {
       plugins: true,
       webviewAttributes: {
         nodeintegration: "nodeintegration",
+        plugins: "plugins",
       },
       closable: true,
       ready: navigate,
@@ -788,6 +790,7 @@ tabGroup.addTab({
   plugins: true,
   webviewAttributes: {
     nodeintegration: "nodeintegration",
+    plugins: "plugins",
   },
   closable: true,
   ready: navigate,
